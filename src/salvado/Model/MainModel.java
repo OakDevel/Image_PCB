@@ -3,21 +3,22 @@ package salvado.Model;
 import javafx.scene.paint.Color;
 import salvado.Controllers.Interfaces.IController;
 import salvado.Model.Interfaces.IImageModel;
-import salvado.Model.Interfaces.IFileModel;
+import salvado.Model.Interfaces.IMainModel;
 import salvado.Model.Interfaces.ITerminal;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 
-public class FileModel implements IFileModel {
+import static salvado.Utilities.Constants.QUOTES;
+
+public class MainModel implements IMainModel {
 
     private File file;
     private ITerminal terminal;
     private IImageModel imageModel;
     private IController controller;
-    private static final String QUOTES = "\"";
 
-    public FileModel(IController controller) {
+    public MainModel(IController controller) {
         this.controller = controller;
         this.terminal = new Terminal();
         this.imageModel = new ImageModel(terminal);
@@ -30,7 +31,7 @@ public class FileModel implements IFileModel {
             controller.setLoading();
             try {
                 imageModel.getPreview(file, (f) -> controller.onSuccessFileSelected(f), () -> controller.onFailedSelectedFile());
-            } catch (UnsupportedEncodingException e) {
+            } catch (Exception e) {
                 controller.onFailedSelectedFile();
             }
         }else{
@@ -49,6 +50,11 @@ public class FileModel implements IFileModel {
         String command = "convert -density " + density + " -resize " + scale + "% " + in +  " -fuzz " + fuzz + "% -fill " + inColour + " -opaque " + outColour + " " + out;
 
         terminal.run(command, controller::showSuccess, () -> controller.showError("Error converting svg!"));
+    }
+
+    @Override
+    public void convertAndBurn(Color inColor, Color outColor, double fuzz, double scale, double density, String format) {
+
     }
 
     private String createOutputFile(String format){

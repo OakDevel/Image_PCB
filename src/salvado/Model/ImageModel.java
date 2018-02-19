@@ -10,10 +10,11 @@ import java.net.URLDecoder;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
+import static salvado.Utilities.Constants.QUOTES;
+
 public class ImageModel implements IImageModel{
 
     private ITerminal terminal;
-    private static final String QUOTES = "\"";
 
     public ImageModel(ITerminal terminal){
         this.terminal = terminal;
@@ -28,7 +29,7 @@ public class ImageModel implements IImageModel{
     }
 
     @Override
-    public void getPreview(File file, Function<File, Void> onSuccess, Callable<Void> onFailure) throws UnsupportedEncodingException {
+    public void getPreview(File file, Function<File, Void> onSuccess, Callable<Void> onFailure) throws Exception {
         String out = getClass().getClassLoader().getResource("./").getPath() + "preview.png";
         out = URLDecoder.decode(out, "UTF-8");
 

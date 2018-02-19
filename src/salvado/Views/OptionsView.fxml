@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="optionsView" prefHeight="411.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salvado.Controllers.OptionsController">
+
+        <children>
+            <ColorPicker fx:id="inColor" layoutX="5.0" layoutY="177.0" prefHeight="26.0" prefWidth="115.0" />
+            <ColorPicker fx:id="outColor" layoutX="5.0" layoutY="238.0" prefHeight="26.0" prefWidth="115.0" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="7.0" layoutY="156.0" prefHeight="16.0" prefWidth="58.0" text="IN Color" />
+            <Label alignment="CENTER" layoutX="7.0" layoutY="216.0" prefHeight="17.0" prefWidth="58.0" text="OUT Color" />
+            <Slider fx:id="fuzzSlider" blockIncrement="2.0" layoutX="4.0" layoutY="58.0" prefHeight="33.0" prefWidth="193.0" value="50.0" />
+            <Label layoutX="4.0" layoutY="10.0" text="Options" />
+            <Label layoutX="4.0" layoutY="37.0" text="Fuzz:" />
+            <Label layoutX="6.0" layoutY="97.0" text="Format" />
+            <Label fx:id="fuzzValue" layoutX="42.0" layoutY="38.0" text="0" />
+            <ChoiceBox fx:id="formatPicker" layoutX="6.0" layoutY="116.0" prefHeight="26.0" prefWidth="115.0" />
+            <Slider fx:id="scaleSlider" blockIncrement="2.0" layoutX="4.0" layoutY="360.0" prefHeight="33.0" prefWidth="193.0" value="50.0" />
+            <Slider fx:id="densitySlider" blockIncrement="50.0" layoutX="4.0" layoutY="297.0" majorTickUnit="150.0" max="1200.0" minorTickCount="0" prefHeight="33.0" prefWidth="193.0" value="300.0" />
+            <Label layoutX="6.0" layoutY="275.0" text="Density:" />
+            <Label fx:id="densityValue" layoutX="64.0" layoutY="275.0" text="0" />
+            <Label layoutX="9.0" layoutY="338.0" text="Scale:" />
+            <Label fx:id="scaleValue" layoutX="53.0" layoutY="339.0" text="0" />
+        </children>
+</Pane>

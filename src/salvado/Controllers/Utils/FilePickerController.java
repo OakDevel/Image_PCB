@@ -1,4 +1,4 @@
-package salvado.Controllers;
+package salvado.Controllers.Utils;
 
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
