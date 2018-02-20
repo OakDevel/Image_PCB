@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Views/Main.fxml"));
         primaryStage.setTitle("Image Converter For PCB");
-        primaryStage.setResizable(false);
+
         primaryStage.setScene(new Scene(root, 560, 450));
         primaryStage.show();
     }

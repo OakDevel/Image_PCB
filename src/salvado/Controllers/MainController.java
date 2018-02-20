@@ -11,10 +11,7 @@ import salvado.Controllers.Interfaces.IController;
 import salvado.Controllers.Utils.FilePickerController;
 import salvado.Model.MainModel;
 import salvado.Model.Interfaces.IMainModel;
-
 import java.io.*;
-
-import static salvado.Utilities.ImageViewUtils.centerImage;
 
 public class MainController implements IController{
     private IMainModel model;
@@ -60,7 +57,9 @@ public class MainController implements IController{
         try {
             Image image = new Image(new FileInputStream(file));
             imageView.setImage(image);
-            centerImage(imageView);
+            imageView.setPreserveRatio(true);
+            imageView.setFitWidth(image.getWidth());
+            imageView.setFitHeight(image.getHeight());
         } catch (FileNotFoundException e) { }
 
         return null;
@@ -69,10 +68,10 @@ public class MainController implements IController{
     @Override
     public Void onFailedSelectedFile() {
         convertButton.setDisable(true);
-        convertAndBurn.setDisable(false);
+        convertAndBurn.setDisable(true);
         loadingView.setVisible(false);
         imageView.setImage(null);
-        showError("Cannot read file!");
+        showError("An Error occurred when processing the file... Try another one");
 
         return null;
     }

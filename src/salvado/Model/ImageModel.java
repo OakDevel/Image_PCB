@@ -3,6 +3,8 @@ package salvado.Model;
 import javafx.scene.paint.Color;
 import salvado.Model.Interfaces.IImageModel;
 import salvado.Model.Interfaces.ITerminal;
+import salvado.Utilities.Constants;
+import salvado.Utilities.PathUtilities;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +12,7 @@ import java.net.URLDecoder;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
+import static salvado.Utilities.Constants.COMMAND;
 import static salvado.Utilities.Constants.QUOTES;
 
 public class ImageModel implements IImageModel{
@@ -30,14 +33,11 @@ public class ImageModel implements IImageModel{
 
     @Override
     public void getPreview(File file, Function<File, Void> onSuccess, Callable<Void> onFailure) throws Exception {
-        String out = getClass().getClassLoader().getResource("./").getPath() + "preview.png";
-        out = URLDecoder.decode(out, "UTF-8");
+        String out = PathUtilities.createPreviewPath(file, getClass());
 
-        String command = "convert -trim " + QUOTES + file.getAbsolutePath() + QUOTES + " " + QUOTES + out + QUOTES;
-
-        String finalOut = out;
+        String command = COMMAND + " -trim " + QUOTES + file.getAbsolutePath() + QUOTES + " " + QUOTES + out + QUOTES;
         terminal.run(command, ()-> {
-            onSuccess.apply(new File(finalOut));
+            onSuccess.apply(new File(out));
             return null;
         }, onFailure);
     }
