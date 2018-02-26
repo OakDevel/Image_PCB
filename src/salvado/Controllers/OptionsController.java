@@ -52,7 +52,7 @@ public class OptionsController {
     }
 
     public Color getOutColor() {
-        return inColor.getValue();
+        return outColor.getValue();
     }
 
     public double getFuzzValue(){
